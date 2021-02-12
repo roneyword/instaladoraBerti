@@ -21,11 +21,19 @@
     
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.css">
     
     <!-- for on scroll animations -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/daneden/animate.css/v3.1.0/animate.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <title>Instaladora Berti</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.1.1/sweetalert2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-masker/1.2.0/vanilla-masker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
     
     <style type="text/css">
         /* Não alterar */
@@ -706,21 +714,21 @@
             <div class="col-12 col-md-6">
 
                 <!-- Não remova, nem altere a div abaixo -->
-                <div id="content">
+                <div id="result">
                     <!-- Será preenchido via Ajax automaticamente -->
                 </div>
                 <br>
-                <form method="post" class="form-contato" novalidate>
+                <form class="form-contato" novalidate>
                     <label for="full_name"></label>
-                    <input class="wow fadeInUp" data-wow-delay="0.3s" type="text" name="full_name" id="full_name" placeholder="Nome"
+                    <input class="wow fadeInUp" data-wow-delay="0.3s" type="text" name="required[full_name]" id="full_name" placeholder="Nome"
                         title="coloque seu nome" required>
 
                     <label for="email"></label>
-                    <input class="wow fadeInUp" data-wow-delay="0.4s" type="email" name="email" id="email" placeholder="E-mail"
+                    <input class="wow fadeInUp" data-wow-delay="0.4s" type="email" name="required[email]" id="email" placeholder="E-mail"
                         title="coloque seu e-mail" required>
 
                     <label for="phone"></label>
-                    <input class="wow fadeInUp" data-wow-delay="0.5s" type="text" name="phone" id="phone" placeholder="Telefone"
+                    <input class="wow fadeInUp" data-wow-delay="0.5s" type="text" name="required[phone]" id="phone" placeholder="Telefone"
                         title="coloque seu telefone" required>
                     
                     <!-- Não remover a div abaixo -->
@@ -731,9 +739,9 @@
 
                     <label for="message"></label>
                     <textarea class="wow fadeInUp" data-wow-delay="0.6s" rows="4" cols="50"
-                        name="message" id="message" placeholder="Digite sua mensagem..." title="Digite sua mensagem" required></textarea>
+                        name="required[message]" id="message" placeholder="Digite sua mensagem..." title="Digite sua mensagem" required></textarea>
 
-                    <button type="button" class="btn-enviar wow fadeInUp" data-wow-delay="0.7s" onclick="proccessForm()">Enviar</button>
+                    <button type="submit" class="btn-enviar wow fadeInUp" data-wow-delay="0.7s">Enviar</button>
                 </form>
             </div>
         </div>
@@ -741,8 +749,6 @@
 
     <footer class="container-fluid py bg-footer">
         <div class="container">
-
-
             <div class="row">
                 <div class="col-12 col-md-4">
                     <div class="mapa">
@@ -789,7 +795,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="direitos">
-                        <h5>© <?= date('Y'); ?> InstaladoraBerti - todos os direitos reservado</h5>
+                        <h5>© 2021 InstaladoraBerti - todos os direitos reservado</h5>
                     </div>
                 </div>
             </div>
@@ -838,41 +844,27 @@
     </script>
 
     <!-- Função AJAX para processar o formulário sem recarregar a página -->
-    <script type="text/javascript">
-        function proccessForm() {
-          $.ajax({
-            type: "POST",
-            url: "app/controller/ControllerContact.php",
-            data: {
-                full_name: $('#full_name').val(),
-                email: $('#email').val(),
-                phone: $('#phone').val(),
-                subject_honey: $('#subject_honey').val(),
-                message: $('#message').val()
-            },
-            success: function(data) {
-              $('#content').html(data);
-            }
-          });
-        }
-    </script>
-
-    <!-- Script Vanilla para aplicar máscaras nos campos -->
-    <script src='js/vanilla-masker.min.js'></script>
     <script>
-    function inputHandler(masks, max, event) {
-        var c = event.target;
-        var v = c.value.replace(/\D/g, '');
-        var m = c.value.length > max ? 1 : 0;
-        VMasker(c).unMask();
-        VMasker(c).maskPattern(masks[m]);
-        c.value = VMasker.toPattern(v, masks[m]);
-    }
+    $(document).ready(function(){
+        $("form").submit(function(event){
+            // Stop form from submitting normally
+            event.preventDefault();
+            
+            /* Serialize the submitted form control values to be sent to the web server with the request */
+            var formValues = $(this).serialize();
+            
+            // Send the form data using post
+            $.post("app/controller/contact.php", formValues, function(data){
+                // Display the returned data in browser
+                $("#result").html(data);
+            });
+        });
+    });
+
     // Máscara do telefone
-    var telMask = ['(99) 9999-99999', '(99) 99999-9999'];
+    var telMask = ['(99) 99999-9999'];
     var tel = document.querySelector('input[id=phone]');
     VMasker(tel).maskPattern(telMask[0]);
-    tel.addEventListener('input', inputHandler.bind(undefined, telMask, 14), false);
-    </script>
+  </script>
 </body>
 </html>
