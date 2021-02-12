@@ -20,10 +20,10 @@ export default function hideMenu() {
         
         if(currentScrollpos >= meioBanner){
             menuNav.classList.add('active');
-            imgNav.src = 'img/img-logo/Logo_preto.png';
+            imgNav.src = 'img/img-logo/logo_preto.png';
         }else{
             menuNav.classList.remove('active');
-            imgNav.src = 'img/img-logo/Logo_branco.png';
+            imgNav.src = 'img/img-logo/logo_branco.png';
             
             
         }
