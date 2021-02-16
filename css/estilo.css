@@ -5447,3 +5447,7 @@ html {
     right: 20px;
     font-size: 32px;
     cursor: pointer; }
+
+    #fb-root, #face-post{
+      display: none !important;
+    }
