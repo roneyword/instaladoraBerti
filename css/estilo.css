@@ -6775,8 +6775,10 @@ html {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 80%;
+  /* width: 80%;
   max-width: 350px;
+  min-width: 350px; */
+  width: 350px;
   z-index: 999;
 }
 
@@ -6959,8 +6961,10 @@ html {
 }
 
 .chat .chat__container .chat__footer .chat__footer_sender {
+  padding: 20px;
   border: none;
   background: none;
+  border: 1px solid red;
 }
 
 .chat .chat__container .chat__footer .chat__footer_sender:hover {
@@ -6969,7 +6973,6 @@ html {
 
 .chat .chat__container .chat__footer .chat__footer_sender i {
   color: #0c315a;
-  padding: 20px;
   font-size: 1.25em;
 }
 
