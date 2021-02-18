@@ -5502,9 +5502,9 @@ html {
   height: 100vh;
   width: 100%;
   background-image: url("../img/img-carroseu/4.jpg");
-  background-position: 100% 100%;
+  /* background-position: 100% 100%;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 .banner .mask {
   position: absolute;
@@ -5512,7 +5512,7 @@ html {
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .banner .titulo {
   display: -webkit-box;
