@@ -140,7 +140,7 @@ export default function chat() {
     const inputValue = chatInput.value.trim();
 
     if (step >= max_step - 1 && inputValue.length >= 3) {
-      controlStep(inputValue);
+      controlStep(inputValue, 3);
       return;
     }
 
