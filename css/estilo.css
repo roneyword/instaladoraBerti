@@ -6775,10 +6775,8 @@ html {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  /* width: 80%;
+  width: 80%;
   max-width: 350px;
-  min-width: 350px; */
-  width: 350px;
   z-index: 999;
 }
 
@@ -6948,9 +6946,10 @@ html {
 }
 
 .chat .chat__container .chat__footer .chat__footer_texto {
-  -webkit-box-flex: 1;
+  /* -webkit-box-flex: 1;
   -ms-flex: 1;
-  flex: 1;
+  flex: 1; */
+  width: calc(100% - 62px);
   padding: 10px 10px 10px 30px;
   border: 0;
 }
@@ -6964,7 +6963,7 @@ html {
   padding: 20px;
   border: none;
   background: none;
-  border: 1px solid red;
+  min-width: 62px;
 }
 
 .chat .chat__container .chat__footer .chat__footer_sender:hover {
