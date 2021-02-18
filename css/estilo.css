@@ -5,6 +5,13 @@
 * Browsers: last 4 version
 */
 
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -6780,8 +6787,10 @@ html {
   margin-bottom: 20px;
   overflow: hidden;
   -webkit-transform: scale(0);
+  -ms-transform: scale(0);
   transform: scale(0);
   -webkit-transform-origin: right bottom;
+  -ms-transform-origin: right bottom;
   transform-origin: right bottom;
 }
 
@@ -6967,8 +6976,14 @@ html {
 .chat .chat__btn {
   -ms-flex-item-align: end;
   align-self: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   max-width: 60px;
   height: 60px;
